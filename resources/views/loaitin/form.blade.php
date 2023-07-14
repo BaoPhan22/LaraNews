@@ -7,7 +7,7 @@
 
     <div class="w-1/2 m-auto">
         <form class="w-full mt-3"
-            action="{{ isset($data) ? route('loaitin.update', ['id' => $data->id]) : route('loaitin.store') }}"
+            action="{{ isset($data) ? route('loaitin.update', ['newCate' => $data]) : route('loaitin.store') }}"
             method="POST">
             @csrf
             @isset($data)
@@ -21,7 +21,7 @@
                     <input
                         class="appearance-none block w-full bg-wtext-white text-grey-500 border border-wtext-white rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-wtext-white"
                         type="text" placeholder="Tên loại tin" id="name" name="name"
-                        value="{{ $data->ten ?? old('name') }}">
+                        value="{{ $data->name ?? old('name') }}">
                     @error('name')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
@@ -29,29 +29,32 @@
             </div>
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                    <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="language">
+                    <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="lang">
                         Ngôn ngữ
                     </label>
                     <select
                         class="appearance-none block w-full bg-wtext-white text-grey-500 border border-wtext-white rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-wtext-white "
-                        name="language" id="language">
-                        <option value="vi" {{ isset($data) && $data['lang'] === 'vi' ? 'selected' : '' }}>Tiếng Việt
+                        name="lang" id="lang">
+                        <option value="vi"
+                            {{ (isset($data) && $data['lang']) || old('lang') === 'vi' ? 'selected' : '' }}>Tiếng
+                            Việt
                         </option>
-                        <option value="en" {{ isset($data) && $data['lang'] === 'en' ? 'selected' : '' }}>Tiếng Anh
+                        <option value="en"
+                            {{ (isset($data) && $data['lang']) || old('lang') === 'en' ? 'selected' : '' }}>Tiếng
+                            Anh
                         </option>
                     </select>
-                    @error('language')
+                    @error('lang')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="w-full md:w-1/3 px-3">
-                    <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="grid-last-name">
+                    <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="order">
                         Thứ tự
                     </label>
                     <input
                         class="appearance-none block w-full bg-wtext-white text-grey-500 border border-wtext-white rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-wtext-white "
-                        id="grid-last-name" type="number" placeholder="Doe" name="order"
-                        value="{{ $data->thuTu ?? old('ten') }}">
+                        id="order" type="number" name="order" value="{{ $data->order ?? old('order') }}">
                 </div>
                 <div class="w-full md:w-1/3 px-3">
                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="grid-last-name">
@@ -60,14 +63,14 @@
                     <div class="flex items-center mb-2">
                         <input checked id="default-radio-1" type="radio" value="1" name="isVisible"
                             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                            {{ isset($data) && (int) $data['anHien'] === 1 ? 'checked' : '' }}>
+                            {{ (isset($data) && (int) $data['isVisible'] === 1) || old('isVisible') == 1 ? 'checked' : '' }}>
                         <label for="default-radio-1"
                             class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Hiện</label>
                     </div>
                     <div class="flex items-center">
                         <input id="default-radio-2" type="radio" value="0" name="isVisible"
                             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                            {{ isset($data) && (int) $data['anHien'] === 0 ? 'checked' : '' }}>
+                            {{ (isset($data) && (int) $data['isVisible'] === 0) || old('isVisible') == 0 ? 'checked' : '' }}>
                         <label for="default-radio-2"
                             class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ẩn</label>
                     </div>

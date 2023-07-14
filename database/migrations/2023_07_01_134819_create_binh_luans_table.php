@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\News;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,14 +13,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('binh_luans', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('noiDung');
-            $table->boolean('anHien')->nullable();
-            $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users');
-            $table->unsignedBigInteger('id_tins');
-            $table->foreign('id_tins')->references('id')->on('tins');
+            $table->string('content');
+            $table->boolean('isVisible')->nullable();
+
+            $table->foreignIdFor(News::class);
+            $table->foreignIdFor(User::class);
+
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('binh_luans');
+        Schema::dropIfExists('comments');
     }
 };

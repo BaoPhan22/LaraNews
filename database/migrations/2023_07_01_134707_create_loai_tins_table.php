@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('loai_tins', function (Blueprint $table) {
+        Schema::create('news_categories', function (Blueprint $table) {
             $table->id();
             $table->char('lang', 2)->nullable();
-            $table->string('ten', 100);
-            $table->integer('thuTu')->nullable();
-            $table->boolean('anHien')->nullable();
+            $table->string('name', 100);
+            $table->integer('order')->nullable();
+            $table->boolean('isVisible')->default('1');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('loai_tins');
+        Schema::dropIfExists('news_categories');
     }
 };

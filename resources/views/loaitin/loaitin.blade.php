@@ -32,7 +32,7 @@
                 </tr>
             </thead>
             <tbody>
-                @if (empty($data))
+                @if (!$data->count())
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <td class="px-6 py-4" colspan="5">
                             Không có dữ liệu
@@ -44,20 +44,26 @@
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $item['ten'] }}
+                                {{ $item['name'] }}
                             </th>
                             <td class="px-6 py-4">
                                 {{ $item['lang'] }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $item['thuTu'] === null ? 'Chưa có' : $item['thuTu'] }}
+                                {{ $item['order'] === null ? 'Chưa có' : $item['order'] }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ (int) $item['anHien'] === 1 ? 'Hiện' : 'Ẩn' }}
+                                {{ (int) $item['isVisible'] === 1 ? 'Hiện' : 'Ẩn' }}
                             </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="{{ route('loaitin.edit', $item['id']) }}"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <td class="px-3 py-4 flex flex-col items-center justify-center">
+                                <a href="{{ route('loaitin.edit', ['newCate' => $item['id']]) }}"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Sửa</a>
+                                <form method="POST" action="{{ route('loaitin.destroy', ['newCate' => $item->id]) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button
+                                        class="font-medium text-red-600 dark:text-red-500 hover:underline">Xóa</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

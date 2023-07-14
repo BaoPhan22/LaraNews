@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\NewsCategories;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,19 +13,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tins', function (Blueprint $table) {
+        Schema::create('news', function (Blueprint $table) {
             $table->id();
+
             $table->char('lang', 2);
-            $table->string('tieuDe', 255);
-            $table->string('tomTat', 1000)->nullable();
-            $table->string('urlImg', 255)->nullable();
-            $table->text('noiDung')->nullable();
-            $table->integer('xem')->default(0);
-            $table->boolean('noiBat')->nullable();
-            $table->boolean('anHien')->nullable();
+            $table->string('title', 255);
+            $table->string('summary', 1000)->nullable();
+            $table->string('image', 255)->nullable();
+            $table->text('content')->nullable();
+            $table->integer('views')->default(0);
+            $table->boolean('isTrending')->nullable();
+            $table->boolean('isVisible')->nullable();
             $table->string('tags', 1000)->nullable();
-            $table->unsignedBigInteger('idTL');
-            $table->foreign('idTL')->references('id')->on('loai_tins')->onDelete('cascade');
+
+
+            $table->foreignIdFor(NewsCategories::class);
+            $table->foreignIdFor(User::class);
+
             $table->timestamps();
         });
     }
@@ -33,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tins');
+        Schema::dropIfExists('news');
     }
 };

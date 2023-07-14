@@ -2,55 +2,54 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LoaiTin;
+use App\Http\Requests\LoaiTinRequest;
+use App\Models\NewsCategories;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class LoaiTinController extends Controller
 {
     public function index()
     {
-        $data = LoaiTin::select('id', 'ten', 'lang', 'anHien', 'thuTu')->orderBy('thuTU', 'asc')->get();
-        return view('tin.loaitin', ['data' => $data]);
+        $data = NewsCategories::select('id', 'name', 'lang', 'isVisible', 'order')->orderBy('order', 'asc')->get();
+        return view('loaitin.loaitin', ['data' => $data]);
     }
 
     public function add()
     {
-        return view('tin.themloaitin');
+        return view('loaitin.themloaitin');
     }
 
-    public function store(Request $request)
+    public function store(LoaiTinRequest $request)
     {
-        $request->validate([
-            'name' => 'required|min:1|max:255',
-            'language' => 'required',
-            'isVisible' => 'required',
-        ]);
-        LoaiTin::create([
-            'ten' => $request->name,
-            'lang' => $request->language,
-            'anHien' => $request->isVisible,
-            'thuTu' => $request->order,
+        $request->validated();
+        NewsCategories::create([
+            'name' => $request->name,
+            'lang' => $request->lang,
+            'isVisible' => $request->isVisible,
+            'order' => $request->order,
         ]);
         return redirect()->route('loaitin.index');
     }
-    public function edit($id)
+    public function edit(NewsCategories $newCate)
     {
-        $data = LoaiTin::find($id);
-        return view('tin.capnhatloaitin', ['data' => $data]);
+        return view('loaitin.capnhatloaitin', ['data' => $newCate]);
     }
-    public function update(Request $request)
+    public function update(NewsCategories $newCate, LoaiTinRequest $request)
     {
-        $request->validate([
-            'name' => 'required|min:1|max:255',
-            'language' => 'required',
-            'isVisible' => 'required',
+        $request->validated();
+
+        NewsCategories::where('id', $newCate->id)->update([
+            'name' => $request->name,
+            'lang' => $request->lang,
+            'isVisible' => $request->isVisible,
+            'order' => $request->order,
         ]);
-        LoaiTin::where('id', $request->id)->update([
-            'ten' => $request->name,
-            'lang' => $request->language,
-            'anHien' => $request->isVisible,
-            'thuTu' => $request->order,
-        ]);
+        return redirect()->route('loaitin.index');
+    }
+    public function destroy(NewsCategories $newCate)
+    {
+        $newCate->delete();
         return redirect()->route('loaitin.index');
     }
 }

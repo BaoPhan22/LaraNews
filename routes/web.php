@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BinhLuanController;
 use App\Http\Controllers\LoaiTinController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TinController;
@@ -33,16 +34,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::controller(TinController::class)->group(function () {
-    // Route::post('/orders', 'store');
-});
-
 Route::controller(LoaiTinController::class)->group(function () {
     Route::get('/loaitin', 'index')->name('loaitin.index');
-    Route::get('/themloaitin', 'add')->name('loaitin.add');
-    Route::get('/capnhatloaitin/{id}', 'edit')->name('loaitin.edit');
-    Route::post('/themloaitin', 'store')->name('loaitin.store');
-    Route::put('/capnhatloaitin', 'update')->name('loaitin.update');
+    Route::get('/loaitin/them', 'add')->name('loaitin.add');
+    Route::post('/loaitin/them', 'store')->name('loaitin.store');
+    Route::get('/loaitin/capnhat/{newCate}', 'edit')->name('loaitin.edit');
+    Route::put('/loaitin/capnhat/{newCate}', 'update')->name('loaitin.update');
+    Route::delete('/loaitin/xoa/{newCate}', 'destroy')->name('loaitin.destroy');
 });
+
+Route::resource('tin', TinController::class);
+
+Route::resource('tin.binhluan', BinhLuanController::class)->scoped();
 
 require __DIR__ . '/auth.php';
