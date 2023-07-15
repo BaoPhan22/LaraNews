@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\BinhLuanController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LoaiTinController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TinController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -36,15 +37,18 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(LoaiTinController::class)->group(function () {
     Route::get('/loaitin', 'index')->name('loaitin.index');
-    Route::get('/loaitin/them', 'add')->name('loaitin.add');
-    Route::post('/loaitin/them', 'store')->name('loaitin.store');
-    Route::get('/loaitin/capnhat/{newCate}', 'edit')->name('loaitin.edit');
-    Route::put('/loaitin/capnhat/{newCate}', 'update')->name('loaitin.update');
-    Route::delete('/loaitin/xoa/{newCate}', 'destroy')->name('loaitin.destroy');
+    Route::get('/loaitin/{newCate}', 'show')->name('loaitin.show');
+    Route::get('/loaitin/them', 'add')->name('loaitin.add')->middleware(['auth', 'verified']);
+    Route::post('/loaitin/them', 'store')->name('loaitin.store')->middleware(['auth', 'verified']);
+    Route::get('/loaitin/capnhat/{newCate}', 'edit')->name('loaitin.edit')->middleware(['auth', 'verified']);
+    Route::put('/loaitin/capnhat/{newCate}', 'update')->name('loaitin.update')->middleware(['auth', 'verified']);
+    Route::delete('/loaitin/xoa/{newCate}', 'destroy')->name('loaitin.destroy')->middleware(['auth', 'verified']);
 });
 
-Route::resource('tin', TinController::class);
+Route::resource('tin', NewsController::class)->middleware(['auth', 'verified']);
 
-Route::resource('tin.binhluan', BinhLuanController::class)->scoped();
+Route::resource('tin.binhluan', CommentController::class)->scoped()->middleware(['auth', 'verified']);
+
+Route::resource('nguoidung', UserController::class)->middleware(['auth', 'verified']);
 
 require __DIR__ . '/auth.php';

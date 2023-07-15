@@ -35,13 +35,13 @@
                     <select
                         class="appearance-none block w-full bg-wtext-white text-grey-500 border border-wtext-white rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-wtext-white "
                         name="lang" id="lang">
-                        <option value="vi"
-                            {{ (isset($data) && $data['lang']) || old('lang') === 'vi' ? 'selected' : '' }}>Tiếng
-                            Việt
+                        <option value="vi" selected
+                            {{ (isset($data) && $data['lang'] == 'vi') || old('lang') == 'vi' ? 'selected' : '' }}>
+                            Tiếng Việt
                         </option>
                         <option value="en"
-                            {{ (isset($data) && $data['lang']) || old('lang') === 'en' ? 'selected' : '' }}>Tiếng
-                            Anh
+                            {{ (isset($data) && $data['lang'] == 'en') || old('lang') == 'en' ? 'selected' : '' }}>
+                            Tiếng Anh
                         </option>
                     </select>
                     @error('lang')
@@ -54,7 +54,8 @@
                     </label>
                     <input
                         class="appearance-none block w-full bg-wtext-white text-grey-500 border border-wtext-white rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-wtext-white "
-                        id="order" type="number" name="order" value="{{ $data->order ?? old('order') }}">
+                        id="order" type="number" name="order"
+                        value="{{ $data->order ?? (old('order') ?? 1000) }}">
                 </div>
                 <div class="w-full md:w-1/3 px-3">
                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="grid-last-name">
@@ -63,14 +64,14 @@
                     <div class="flex items-center mb-2">
                         <input checked id="default-radio-1" type="radio" value="1" name="isVisible"
                             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                            {{ (isset($data) && (int) $data['isVisible'] === 1) || old('isVisible') == 1 ? 'checked' : '' }}>
+                            {{ (isset($data) && $data['isVisible'] === 1) || old('isVisible') === 1 ? 'checked' : ' ' }}>
                         <label for="default-radio-1"
                             class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Hiện</label>
                     </div>
                     <div class="flex items-center">
                         <input id="default-radio-2" type="radio" value="0" name="isVisible"
                             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                            {{ (isset($data) && (int) $data['isVisible'] === 0) || old('isVisible') == 0 ? 'checked' : '' }}>
+                            {{ (isset($data) && $data['isVisible'] === 0) || old('isVisible') === 0 ? 'checked' : ' ' }}>
                         <label for="default-radio-2"
                             class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ẩn</label>
                     </div>
@@ -84,10 +85,7 @@
                     Thêm loại tin
                 @endisset
             </button>
+
         </form>
     </div>
-
-
-
-
 </x-app-layout>

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->string('content');
-            $table->boolean('isVisible')->nullable();
+            $table->boolean('isVisible')->nullable()->default(1);
 
             $table->foreignIdFor(News::class);
             $table->foreignIdFor(User::class);

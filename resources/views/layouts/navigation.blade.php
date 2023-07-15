@@ -21,6 +21,16 @@
                         {{ __('Loại tin') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('tin.index')" :active="request()->routeIs('tin.index', 'tin.create', 'tin.show')">
+                        {{ __('Tin') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('nguoidung.index')" :active="request()->routeIs('nguoidung.index', 'nguoidung.create', 'nguoidung.show')">
+                        {{ __('Người dùng') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

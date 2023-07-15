@@ -10,6 +10,8 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['content', 'user_id'];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -18,5 +20,11 @@ class Comment extends Model
     public function news(): BelongsTo
     {
         return $this->belongsTo(News::class);
+    }
+
+    public function totoggleIsVisible()
+    {
+        $this->isVisible = !$this->isVisible;
+        $this->save();
     }
 }

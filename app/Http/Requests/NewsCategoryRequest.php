@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoaiTinRequest extends FormRequest
+class NewsCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +22,10 @@ class LoaiTinRequest extends FormRequest
     public function rules(): array
     {
         return [
-            [
-                'name' => 'required|min:1|max:255',
-                // 'lang' => 'required',
-                // 'isVisible' => 'required',
-            ]
+            'name' => 'required|max:255',
+            'lang' => 'nullable|string|max:2',
+            'isVisible' => 'nullable|integer',
+            'order' => 'nullable'
         ];
     }
 }

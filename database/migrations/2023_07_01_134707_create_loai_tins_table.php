@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('news_categories', function (Blueprint $table) {
             $table->id();
-            $table->char('lang', 2)->nullable();
+            $table->char('lang', 2)->default('vi');
             $table->string('name', 100);
-            $table->integer('order')->nullable();
-            $table->boolean('isVisible')->default('1');
+            $table->integer('order')->nullable()->default(1000);
+            $table->boolean('isVisible')->default(1);
             $table->timestamps();
         });
     }

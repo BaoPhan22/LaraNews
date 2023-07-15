@@ -25,6 +25,7 @@ class CommentSeeder extends Seeder
                 Comment::factory()->create([
                     'user_id' => $user->id,
                     'news_id' => $item->id,
+                    'isVisible' => 1
                 ]);
             }
         }
