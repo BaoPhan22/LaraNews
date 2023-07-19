@@ -25,7 +25,6 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    // if (Auth::user()->vaitro !== 0) throw new NotFoundHttpException();
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
