@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\NewsResource;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -74,5 +75,13 @@ class NewsController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function show_client(News $tin)
+    {
+        $tin->load('comment');
+        $data[] = new NewsResource($tin);
+        // return(($data[0]->content));
+        return view('clients.tin.chitiettin', ['data' => $data]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NewsCategoryRequest;
+use App\Http\Resources\NewsCategoriesResource;
 use App\Models\NewsCategories;
 use App\Models\News;
 use Illuminate\Http\Request;
@@ -59,7 +60,15 @@ class LoaiTinController extends Controller
 
     public function show($newCateId)
     {
-        // return News::where('news_categories_id', $newCateId)->get();
-        return view('tin.tin', ['data' => News::where('news_categories_id', $newCateId)->get()]);
+        return view('admin.tin.tin', ['data' => News::where('news_categories_id', $newCateId)->get()]);
+    }
+
+    public function show_client(NewsCategories $newCate)
+    {
+        $newCate->load('news');
+        $data[] = new NewsCategoriesResource($newCate);
+        return view('clients.tin.tin', ['data'=>$data]);
+        // dd($data->resource) ;
+        // return ($data);
     }
 }

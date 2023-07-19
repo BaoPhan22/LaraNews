@@ -10,8 +10,8 @@
         </div>
         <div class="page_layout page_margin_top clearfix">
             <div class="row">
-                @include('parts.latest-post')
-                @include('parts.recommend')
+                @include('parts.col-2')
+                @include('parts.col-1')
             </div>
         </div>
     </div>

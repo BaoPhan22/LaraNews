@@ -22,7 +22,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('homepage');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -34,14 +34,22 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::controller(LoaiTinController::class)->middleware(['auth', 'verified'])->group(function () {
+    Route::get('admin/loaitin', 'index')->name('admin.loaitin.index');
+    Route::get('admin/loaitin/{newCate}', 'show')->name('admin.loaitin.show');
+    Route::get('admin/loaitin/them', 'add')->name('admin.loaitin.add');
+    Route::post('admin/loaitin/them', 'store')->name('admin.loaitin.store');
+    Route::get('admin/loaitin/capnhat/{newCate}', 'edit')->name('admin.loaitin.edit');
+    Route::put('admin/loaitin/capnhat/{newCate}', 'update')->name('admin.loaitin.update');
+    Route::delete('admin/loaitin/xoa/{newCate}', 'destroy')->name('admin.loaitin.destroy');
+});
+
 Route::controller(LoaiTinController::class)->group(function () {
-    Route::get('/loaitin', 'index')->name('loaitin.index');
-    Route::get('/loaitin/{newCate}', 'show')->name('loaitin.show');
-    Route::get('/loaitin/them', 'add')->name('loaitin.add')->middleware(['auth', 'verified']);
-    Route::post('/loaitin/them', 'store')->name('loaitin.store')->middleware(['auth', 'verified']);
-    Route::get('/loaitin/capnhat/{newCate}', 'edit')->name('loaitin.edit')->middleware(['auth', 'verified']);
-    Route::put('/loaitin/capnhat/{newCate}', 'update')->name('loaitin.update')->middleware(['auth', 'verified']);
-    Route::delete('/loaitin/xoa/{newCate}', 'destroy')->name('loaitin.destroy')->middleware(['auth', 'verified']);
+    Route::get('/loaitin/{newCate}', 'show_client')->name('loaitin.show_client');
+});
+
+Route::controller(NewsController::class)->group(function () {
+    Route::get('/tintuc/{tin}', 'show_client')->name('tin.show_client');
 });
 
 Route::resource('tin', NewsController::class)->middleware(['auth', 'verified']);

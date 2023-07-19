@@ -67,7 +67,7 @@
                         <li class="post">
                             <a href="post_gallery.html" title="Study Linking Illnes and Salt Leaves Researchers Doubtful">
                                 <span class="icon small gallery"></span>
-                                <img src='images/samples/100x100/image_06.jpg' alt='img'>
+                                <img src='{{asset('images/samples/100x100/image_06.jpg')}}' alt='img'>
                             </a>
                             <div class="post_content">
                                 <h5>
@@ -83,7 +83,7 @@
                         </li>
                         <li class="post">
                             <a href="post.html" title="Syrian Civilians Trapped For Months Continue To Be Evacuated">
-                                <img src='images/samples/100x100/image_12.jpg' alt='img'>
+                                <img src='{{asset('images/samples/100x100/image_12.jpg')}}' alt='img'>
                             </a>
                             <div class="post_content">
                                 <h5>
@@ -99,7 +99,7 @@
                         </li>
                         <li class="post">
                             <a href="post.html" title="Built on Brotherhood, Club Lives Up to Name">
-                                <img src='images/samples/100x100/image_02.jpg' alt='img'>
+                                <img src='{{asset('images/samples/100x100/image_02.jpg')}}' alt='img'>
                             </a>
                             <div class="post_content">
                                 <h5>
@@ -115,7 +115,7 @@
                         </li>
                         <li class="post">
                             <a href="post.html" title="Nuclear Fusion Closer to Becoming a Reality">
-                                <img src='images/samples/100x100/image_13.jpg' alt='img'>
+                                <img src='{{asset('images/samples/100x100/image_13.jpg')}}' alt='img'>
                             </a>
                             <div class="post_content">
                                 <h5>
@@ -139,7 +139,7 @@
                         <li class="post">
                             <a href="post_gallery.html" title="Struggling Nuremberg Sack Coach Verbeek">
                                 <span class="icon gallery"></span>
-                                <img src='images/samples/330x242/image_03.jpg' alt='img'>
+                                <img src='{{asset('images/samples/330x242/image_03.jpg')}}' alt='img'>
                             </a>
                             <h5 class="with_number">
                                 <a href="post_gallery.html" title="Struggling Nuremberg Sack Coach Verbeek">Struggling Nuremberg Sack Coach Verbeek</a>
@@ -155,7 +155,7 @@
                         <li class="post">
                             <a href="post_gallery.html" title="Built on Brotherhood, Club Lives Up to Name">
                                 <span class="icon gallery"></span>
-                                <img src='images/samples/330x242/image_14.jpg' alt='img'>
+                                <img src='{{asset('images/samples/330x242/image_14.jpg')}}' alt='img'>
                             </a>
                             <h5 class="with_number">
                                 <a href="post_gallery.html" title="Built on Brotherhood, Club Lives Up to Name">Built on Brotherhood, Club Lives Up to Name</a>
@@ -171,7 +171,7 @@
                         <li class="post">
                             <a href="post_gallery.html" title="New Painkiller Rekindles Addiction Concerns">
                                 <span class="icon gallery"></span>
-                                <img src='images/samples/330x242/image_04.jpg' alt='img'>
+                                <img src='{{asset('images/samples/330x242/image_04.jpg')}}' alt='img'>
                             </a>
                             <h5 class="with_number">
                                 <a href="post_gallery.html" title="New Painkiller Rekindles Addiction Concerns">New Painkiller Rekindles Addiction Concerns</a>
