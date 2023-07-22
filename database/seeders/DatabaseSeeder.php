@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::create([
             'name' => 'admin',
+            'image' => fake()->imageUrl(),
             'email' => 'admin@gmail.com',
             'email_verified_at' => now(),
             'password' => '$2y$10$fKPwZgkhnVzXg57XZxKXeeahCUPk3TVYdzKccsXy5PTwq5ogYBrdq',

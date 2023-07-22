@@ -35,7 +35,11 @@
                     @endforeach
                 </ul>
             </li>
-
+            <li class="{{ request()->routeIs('authors') ? 'selected' : '' }}">
+                <a href="{{ route('authors') }}" title="Tác giả">
+                    Tác giả
+                </a>
+            </li>
         </ul>
     </nav>
     <div class="mobile_menu_container">

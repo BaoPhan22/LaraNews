@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Http\Resources;
+
+use App\Models\News;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class AuthorResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        return [
+            'id' => $this->id,
+            'image' => $this->image,
+            'role' => $this->role,
+            'about' => $this->about,
+            'name' => $this->name,
+            'news_count' => count(News::where('user_id',$this->id)->get()),
+            'views_count' => 1000,
+            'news' => new NewsResource($this->whenLoaded('news')),
+        ];
+    }
+}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AuthorResource;
 use App\Models\News;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -82,5 +83,21 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function showAll()
+    {
+        // return AuthorResource::collection(User::where('role', 1)->get());
+        return view('tacgia.index', ['data' => AuthorResource::collection(User::where('role', 1)->paginate(10))]);
+    }
+
+    public function showOne(User $tacgia)
+    {
+        return
+            view('tacgia.show', [
+                'data' =>
+                $tacgia->load("news")
+            ])
+            ;
     }
 }

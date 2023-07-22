@@ -18,6 +18,7 @@ class NewsCategoriesFactory extends Factory
     {
         return [
             'name' => fake()->unique()->sentence(3),
+            'image' => fake()->imageUrl(),
         ];
     }
 }

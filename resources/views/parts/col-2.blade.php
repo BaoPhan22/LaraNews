@@ -1,5 +1,5 @@
 <div class="column column_2_3">
-    <h4 class="box_header">Latest Posts</h4>
+    {{-- <h4 class="box_header">Latest Posts</h4>
     <div class="row">
         <ul class="blog column column_1_2">
             <li class="post">
@@ -74,8 +74,8 @@
                 <a class="read_more" href="post_video.html" title="Read more"><span class="arrow"></span><span>READ MORE</span></a>
             </li>
         </ul>
-    </div>
-    <div class="row page_margin_top_section">
+    </div> --}}
+    {{-- <div class="row page_margin_top_section">
         <h4 class="box_header">Posts Carousel</h4>
         <div class="horizontal_carousel_container page_margin_top">
             <ul class="blog horizontal_carousel autoplay-1 scroll-1 navigation-1 easing-easeInOutQuint duration-750">
@@ -130,8 +130,8 @@
                 </li>
             </ul>
         </div>
-    </div>
-    <div class="row page_margin_top_section">
+    </div> --}}
+    {{-- <div class="row page_margin_top_section">
         <h4 class="box_header">Latest From Health</h4>
         <div class="row">
             <ul class="blog column column_1_2">
@@ -226,7 +226,7 @@
                 <a class="more page_margin_top" href="#">MORE FROM HEALTH</a>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="row page_margin_top_section">
         <h4 class="box_header">Top Posts</h4>
         <div class="tabs no_scroll margin_top_10 clearfix">

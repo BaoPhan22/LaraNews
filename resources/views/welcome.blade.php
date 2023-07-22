@@ -10,10 +10,22 @@
         </div>
         <div class="page_layout page_margin_top clearfix">
             <div class="row">
-                @include('parts.col-2')
-                @include('parts.col-1')
+                <div class="column column_2_3">
+                    @include('parts.latest-post', $latest_post)
+
+                    <div class="row page_margin_top_section">
+                        @include('parts.post-carousel')
+                    </div>
+
+                    <div class="row page_margin_top_section">
+                        @include('parts.latest-post-by-cate', $post_carousel)
+                    </div>
+                </div>
+
+                <div class="column column_1_3">
+                    @include('parts.side_bar', $side_bar)
+                </div>
             </div>
         </div>
     </div>
-    @include('parts.footer')
 @stop

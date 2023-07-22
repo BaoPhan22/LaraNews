@@ -18,13 +18,17 @@ class NewsSeeder extends Seeder
         $users = User::all();
         $newsCategories = NewsCategories::all();
 
-        for ($i = 1; $i < 100; $i++) {
+        for ($i = 1; $i < 500; $i++) {
             $user = $users->random();
             $newsCategory = $newsCategories->random();
 
             News::factory()->create([
                 'user_id' => $user->id,
                 'news_categories_id' => $newsCategory->id,
+                'isVisible' => 1,
+                'isTrending' => rand(0,1),
+                'views' => rand(0,1000),
+                'image' => fake()->imageUrl()
             ]);
         }
     }

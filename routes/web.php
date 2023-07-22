@@ -5,6 +5,8 @@ use App\Http\Controllers\LoaiTinController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Models\News;
+use App\Models\NewsCategories;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -21,7 +23,19 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $slider = News::where('isVisible', 1)->where('isTrending', 1)->inRandomOrder()->limit(5)->get();
+    $latest_post = News::where('isVisible', 1)->where('isTrending', 1)->orderBy('created_at', 'desc')->limit(4)->get();
+    $latest_post_by_cate = News::where('isVisible', 1)->where('isTrending', 1)->where('news_categories_id', rand(1,10))->orderBy('created_at', 'desc')->limit(4)->get();
+    $post_carousel = News::where('isVisible', 1)->where('isTrending', 1)->inRandomOrder()->limit(4)->get();
+    $side_bar = News::where('isVisible', 1)->where('isTrending', 1)->inRandomOrder()->limit(3)->get();
+    
+    return view('welcome', [
+        'slider' => $slider,
+        'latest_post' => $latest_post,
+        'latest_post_by_cate' => $latest_post_by_cate,
+        'post_carousel' => $post_carousel,
+        'side_bar' => $side_bar
+    ]);
 })->name('homepage');
 
 Route::get('/dashboard', function () {
@@ -50,6 +64,11 @@ Route::controller(LoaiTinController::class)->group(function () {
 
 Route::controller(NewsController::class)->group(function () {
     Route::get('/tintuc/{tin}', 'show_client')->name('tin.show_client');
+});
+
+Route::controller(UserController::class)->group(function () {
+    Route::get('/tacgia', 'showAll')->name('authors');
+    Route::get('/tacgia/{tacgia}', 'showOne')->name('author');
 });
 
 Route::resource('tin', NewsController::class)->middleware(['auth', 'verified']);

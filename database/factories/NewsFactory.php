@@ -20,8 +20,7 @@ class NewsFactory extends Factory
             'lang' => 'vi',
             'title' => fake()->sentence(),
             'summary' => fake()->text(50),
-            'content' => fake()->text(),
-
+            'content' => '<p>' . fake()->text(1000) . '</p>',
         ];
     }
 }
