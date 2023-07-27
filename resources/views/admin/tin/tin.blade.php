@@ -90,7 +90,7 @@
                             <td class="px-3 py-4 flex flex-col items-center justify-center">
                                 <a href="{{ url('tin/' . $item->id . '/edit') }}"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Sửa</a>
-                                <form method="POST" action="{{ route('loaitin.destroy', ['newCate' => $item->id]) }}">
+                                <form method="POST" action="{{ route('admin.loaitin.destroy', ['newCate' => $item->id]) }}">
                                     @csrf
                                     @method('DELETE')
                                     <button

@@ -19,7 +19,7 @@ class NewsController extends Controller
         if (Auth::user()->role != 0) {
             $news = News::with('user', 'news_categories')->where('user_id', Auth::user()->id)->get();
         }
-        return view('tin.tin', ['data' => $news]);
+        return view('admin.tin.tin', ['data' => $news]);
     }
 
     /**
@@ -44,7 +44,7 @@ class NewsController extends Controller
     public function show(News $tin)
     {
         if (Auth::user()->role == 0 || $tin['user']->id == Auth::user()->id) {
-            return view('tin.chitiettin', ['data' => $tin]);
+            return view('admin.tin.chitiettin', ['data' => $tin]);
         }
 
         throw new NotFoundHttpException();

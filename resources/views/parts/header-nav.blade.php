@@ -35,10 +35,39 @@
                     @endforeach
                 </ul>
             </li>
-            <li class="{{ request()->routeIs('authors') ? 'selected' : '' }}">
+            <li class="{{ request()->routeIs('authors', 'author') ? 'selected' : '' }}">
                 <a href="{{ route('authors') }}" title="Tác giả">
                     Tác giả
                 </a>
+            </li>
+            <li class="submenu {{ request()->routeIs('loaitin.show_client') ? 'selected' : '' }}">
+                <a href="#" title="Tài khoản">
+                    Tài khoản
+                </a>
+                <ul>
+                    @if (!Auth::user())
+                        <li>
+                            <a href="{{ url('/login') }}" title="Đăng nhập">
+                                Đăng nhập
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/register') }}" title="Đăng ký">
+                                Đăng ký
+                            </a>
+                        </li>
+                    @else
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                    {{ __('Đăng xuất') }}
+                                </x-dropdown-link>
+                            </form>
+                        </li>
+                    @endif
+                </ul>
             </li>
         </ul>
     </nav>

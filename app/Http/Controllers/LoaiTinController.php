@@ -15,7 +15,7 @@ class LoaiTinController extends Controller
     public function index()
     {
         $data = NewsCategories::select('id', 'name', 'lang', 'isVisible', 'order')->orderBy('order', 'asc')->get();
-        return view('loaitin.loaitin', ['data' => $data]);
+        return view('admin.loaitin.loaitin', ['data' => $data]);
         // return $data;
     }
 
@@ -25,13 +25,13 @@ class LoaiTinController extends Controller
         if (Auth::user()->role != 0) {
             throw new NotFoundHttpException();
         }
-        return view('loaitin.themloaitin');
+        return view('admin.loaitin.themloaitin');
     }
 
     public function store(NewsCategoryRequest $request)
     {
         NewsCategories::create($request->validated());
-        return redirect()->route('loaitin.index');
+        return redirect()->route('admin.loaitin.index');
     }
 
     public function edit(NewsCategories $newCate)
@@ -40,7 +40,7 @@ class LoaiTinController extends Controller
         if (Auth::user()->role != 0) {
             throw new NotFoundHttpException();
         }
-        return view('loaitin.capnhatloaitin', ['data' => $newCate]);
+        return view('admin.loaitin.capnhatloaitin', ['data' => $newCate]);
     }
 
     public function update(NewsCategories $newCate, NewsCategoryRequest $request)
@@ -49,13 +49,13 @@ class LoaiTinController extends Controller
             throw new NotFoundHttpException();
         }
         NewsCategories::where('id', $newCate->id)->update($request->validated());
-        return redirect()->route('loaitin.index');
+        return redirect()->route('admin.loaitin.index');
     }
 
     public function destroy(NewsCategories $newCate)
     {
         $newCate->delete();
-        return redirect()->route('loaitin.index');
+        return redirect()->route('admin.loaitin.index');
     }
 
     public function show($newCateId)

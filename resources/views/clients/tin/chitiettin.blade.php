@@ -14,13 +14,13 @@
                                 {{ $data[0]->title }}
                             </h1>
                             <ul class="post_details clearfix">
-                                <li class="detail category">In <a
+                                <li class="detail category">Danh mục: <a
                                         href="{{ route('loaitin.show_client', $data[0]->news_categories->id) }}"
                                         title="{{ $data[0]->news_categories->name }}">
                                         {{ $data[0]->news_categories->name }}</a>
                                 </li>
                                 <li class="detail date">{{ date('d/m/Y', strtotime($data[0]->created_at)) }}</li>
-                                <li class="detail author">Tác giả <a href="#"
+                                <li class="detail author">Tác giả <a href="{{ route('author', $data[0]->user) }}"
                                         title="{{ $data[0]->user->name }}">{{ $data[0]->user->name }}</a>
                                 </li>
                                 <li class="detail views">{{ $data[0]->views }} Lượt xem</li>
@@ -38,12 +38,13 @@
                                 <div class="author_box animated_element"
                                     style="position: absolute; top: 0px; bottom: auto;">
                                     <div class="author">
-                                        <a title="{{ $data[0]->user->name }}" href="#" class="thumb" >
-                                            <img alt="img" style="width: 100px;"
-                                                src="{{ $data[0]->user->image }}">
+                                        <a title="{{ $data[0]->user->name }}" href="{{ route('author', $data[0]->user) }}"
+                                            class="thumb">
+                                            <img alt="img" style="width: 100px;" src="{{ $data[0]->user->image }}">
                                         </a>
                                         <div class="details">
-                                            <h5><a title="{{ $data[0]->user->name }}" href="#">{{ $data[0]->user->name }}</a>
+                                            <h5><a title="{{ $data[0]->user->name }}"
+                                                    href="{{ route('author', $data[0]->user) }}">{{ $data[0]->user->name }}</a>
                                             </h5>
                                         </div>
                                     </div>
@@ -73,14 +74,18 @@
                                 @foreach ($data[0]->comment as $item)
                                     <li class="comment clearfix" id="comment-1">
                                         <div class="comment_author_avatar">
-                                            &nbsp;
+                                            <img src="{{ App\Models\User::find($item->user_id)->image }}" alt=""
+                                                style="width: 100px;">
                                         </div>
                                         <div class="comment_details">
                                             <div class="posted_by clearfix">
-                                                <h5><a class="author" href="#"
-                                                        title="Kevin Nomad">{{ App\Models\User::find($item->user_id)->name }}</a>
+                                                <h5><a class="author"
+                                                        href="{{ route('author', App\Models\User::find($item->user_id)->id) }}"
+                                                        title="{{ App\Models\User::find($item->user_id)->name }}">{{ App\Models\User::find($item->user_id)->name }}</a>
                                                 </h5>
-                                                <abbr title="22 July 2014" class="timeago">9 years ago</abbr>
+                                                <abbr title="22 July 2014" class="timeago">
+                                                    {{ date('h:m d/m/Y', strtotime($item->created_at)) }}
+                                                </abbr>
                                             </div>
                                             <p>
                                                 {{ $item->content }}

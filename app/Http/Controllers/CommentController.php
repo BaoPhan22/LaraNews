@@ -16,7 +16,7 @@ class CommentController extends Controller
     {
         $comments = $tin->comment()->get();
         // return $tin;
-        return view('binhluan.binhluan', ['data' => $comments, 'tin' => $tin]);
+        return view('admin.binhluan.binhluan', ['data' => $comments, 'tin' => $tin]);
     }
 
     /**

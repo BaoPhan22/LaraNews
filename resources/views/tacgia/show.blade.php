@@ -71,7 +71,7 @@
                                     </div>
                                 </div>
                                 <div class="content">
-                                    <ul class="social_icons clearfix">
+                                    {{-- <ul class="social_icons clearfix">
                                         <li>
                                             <a target="_blank" title="" href="#" class="social_icon facebook">
                                                 &nbsp;
@@ -87,7 +87,7 @@
                                                 &nbsp;
                                             </a>
                                         </li>
-                                    </ul>
+                                    </ul> --}}
                                     <h6>{{ $data->role == 1 ? 'Tác giả' : 'Admin' }}</h6>
                                     <h2>{{ $data->name }}</h2>
                                     <p>{{ $data->about }}</p>

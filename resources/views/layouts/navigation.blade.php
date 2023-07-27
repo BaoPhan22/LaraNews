@@ -17,7 +17,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('loaitin.index')" :active="request()->routeIs('loaitin.index', 'loaitin.add', 'loaitin.edit')">
+                    <x-nav-link :href="route('admin.loaitin.index')" :active="request()->routeIs('admin.loaitin.index', 'admin.loaitin.add', 'admin.loaitin.edit')">
                         {{ __('Loại tin') }}
                     </x-nav-link>
                 </div>

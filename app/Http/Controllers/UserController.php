@@ -22,7 +22,7 @@ class UserController extends Controller
             $users = User::where('id', Auth::user()->id)->with('news')->get();
         }
 
-        return view('nguoidung.nguoidung', ['data' => $users]);
+        return view('admin.nguoidung.nguoidung', ['data' => $users]);
     }
 
     /**
@@ -47,7 +47,7 @@ class UserController extends Controller
     public function show(User $nguoidung)
     {
         if (Auth::user()->role == 0 || $nguoidung->id == Auth::user()->id) {
-            return view('nguoidung.nguoidung', ['data' => User::where('id', $nguoidung->id)->with('news')->get()]);
+            return view('admin.nguoidung.nguoidung', ['data' => User::where('id', $nguoidung->id)->with('news')->get()]);
             // return $nguoidung->with('news')->get();
         }
         throw new NotFoundHttpException();
@@ -61,7 +61,7 @@ class UserController extends Controller
         if ($nguoidung->id != Auth::user()->id) {
             throw new NotFoundHttpException();
         }
-        return view('nguoidung.edit', ['data' => $nguoidung]);
+        return view('admin.nguoidung.edit', ['data' => $nguoidung]);
     }
 
     /**
