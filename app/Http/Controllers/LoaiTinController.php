@@ -22,10 +22,12 @@ class LoaiTinController extends Controller
     public function add()
     {
 
-        if (Auth::user()->role != 0) {
-            throw new NotFoundHttpException();
-        }
+        // if (Auth::user()->role != 0) {
+        //     throw new NotFoundHttpException();
+        // }
+        // return view('admin.loaitin.themloaitin');
         return view('admin.loaitin.themloaitin');
+        echo 1;
     }
 
     public function store(NewsCategoryRequest $request)

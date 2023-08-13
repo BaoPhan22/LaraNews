@@ -17,7 +17,7 @@ class NewsCategoriesFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->unique()->sentence(3),
+            'name' => fake()->unique()->realText(10),
             'image' => fake()->imageUrl(),
         ];
     }

@@ -18,9 +18,9 @@ class NewsFactory extends Factory
     {
         return [
             'lang' => 'vi',
-            'title' => fake()->sentence(),
-            'summary' => fake()->text(50),
-            'content' => '<p>' . fake()->text(1000) . '</p>',
+            'title' => fake()->realText(10),
+            'summary' => fake()->realText(50),
+            'content' => '<p>' . fake()->realText(1000) . '</p>',
         ];
     }
 }

@@ -1,1 +1,1 @@
-@include('loaitin.form', ['data' => $data])
+@include('admin.loaitin.form', ['data' => $data])

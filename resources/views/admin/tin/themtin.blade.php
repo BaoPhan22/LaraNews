@@ -1,0 +1,1 @@
+@include('admin.tin.form')

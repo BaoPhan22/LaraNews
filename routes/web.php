@@ -27,7 +27,7 @@ Route::get('/', function () {
     $latest_post = News::where('isVisible', 1)->where('isTrending', 1)->orderBy('created_at', 'desc')->limit(4)->get();
     $latest_post_by_cate = News::where('isVisible', 1)->where('isTrending', 1)->where('news_categories_id', rand(1,10))->orderBy('created_at', 'desc')->limit(4)->get();
     $post_carousel = News::where('isVisible', 1)->where('isTrending', 1)->inRandomOrder()->limit(4)->get();
-    $side_bar = News::where('isVisible', 1)->where('isTrending', 1)->inRandomOrder()->limit(3)->get();
+    $side_bar = News::where('isVisible', 1)->where('isTrending', 1)->inRandomOrder()->limit(5)->get();
     
     return view('welcome', [
         'slider' => $slider,
@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(LoaiTinController::class)->middleware(['auth', 'verified'])->group(function () {
     Route::get('admin/loaitin', 'index')->name('admin.loaitin.index');
-    Route::get('admin/loaitin/{newCate}', 'show')->name('admin.loaitin.show');
+    Route::get('admin/loaitin/chitiet/{newCate}', 'show')->name('admin.loaitin.show');
     Route::get('admin/loaitin/them', 'add')->name('admin.loaitin.add');
     Route::post('admin/loaitin/them', 'store')->name('admin.loaitin.store');
     Route::get('admin/loaitin/capnhat/{newCate}', 'edit')->name('admin.loaitin.edit');

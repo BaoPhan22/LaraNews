@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ !isset($data) ? __('Thêm loại tin') : __('Cập nhật loại tin') }}
+            {{ !isset($data) ? __('Thêm tin mới') : __('Cập nhật tin') }}
         </h2>
     </x-slot>
 
@@ -16,11 +16,25 @@
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="name">
-                        Loại tin
+                        Tiêu đề tin
                     </label>
                     <input
                         class="appearance-none block w-full bg-wtext-white text-grey-500 border border-wtext-white rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-wtext-white"
-                        type="text" placeholder="Tên loại tin" id="name" name="name"
+                        type="text" placeholder="Tên tin" id="name" name="name"
+                        value="{{ $data->name ?? old('name') }}">
+                    @error('name')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+            <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                    <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="name">
+                        Tóm tắt tin
+                    </label>
+                    <input
+                        class="appearance-none block w-full bg-wtext-white text-grey-500 border border-wtext-white rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-wtext-white"
+                        type="text" placeholder="Tên tin" id="name" name="name"
                         value="{{ $data->name ?? old('name') }}">
                     @error('name')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>

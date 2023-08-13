@@ -1,5 +1,5 @@
 <div class="footer_container">
-    <div class="footer clearfix">
+    {{-- <div class="footer clearfix">
         <div class="row">
             <div class="column column_1_3">
                 <h4 class="box_header">About PressRoom</h4>
@@ -230,5 +230,6 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> --}}
+    <h2 class="padding_top_bottom_25">Phan Trần Quốc Bảo - PS21424 - Trang tin tức FPL</h2>
 </div>

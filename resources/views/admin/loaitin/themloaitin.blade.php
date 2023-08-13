@@ -1,1 +1,1 @@
-@include('loaitin.form')
+@include('admin.loaitin.form')
